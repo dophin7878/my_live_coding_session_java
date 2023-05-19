@@ -1,4 +1,4 @@
-package com.mylive.springcodingsession.user;
+package com.mylive.springcodingsession.employee;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 

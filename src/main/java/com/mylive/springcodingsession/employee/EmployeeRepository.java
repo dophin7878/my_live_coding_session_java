@@ -1,9 +1,9 @@
-package com.mylive.springcodingsession.user;
+package com.mylive.springcodingsession.employee;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User,Integer>{
+public interface EmployeeRepository extends JpaRepository<Employee,Integer>{
 
 }
