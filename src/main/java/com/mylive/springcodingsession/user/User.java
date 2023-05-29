@@ -2,6 +2,7 @@ package com.mylive.springcodingsession.user;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -11,7 +12,7 @@ import java.time.LocalDate;
 public class User {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	
 	@Size(min=2, message="Name should have at least 2 characters")
@@ -23,9 +24,8 @@ public class User {
 	protected User() {
 	}
 	
-	public User(Integer id, String name, LocalDate birthDate) {
+	public User(String name, LocalDate birthDate) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.birthDate = birthDate;
 	}
