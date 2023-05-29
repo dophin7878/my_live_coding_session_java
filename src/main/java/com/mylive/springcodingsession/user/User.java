@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class User {
@@ -18,12 +18,12 @@ public class User {
 	private String name;
 	
 	@Past
-	private Date birthDate;
+	private LocalDate birthDate;
 
 	protected User() {
 	}
 	
-	public User(Integer id, String name, Date birthDate) {
+	public User(Integer id, String name, LocalDate birthDate) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -42,10 +42,10 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 	
