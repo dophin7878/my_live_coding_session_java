@@ -26,8 +26,8 @@ public class UserService {
 		return user;
 	}
 
-	public ResponseEntity<Object> createUser(User user) {
+	public ResponseEntity<User> createUser(User user) {
 		userRepository.save(user);
-		return ResponseEntity.status(HttpStatus.CREATED).build();
+		return new ResponseEntity<>(user, HttpStatus.CREATED);
 	}
 }
