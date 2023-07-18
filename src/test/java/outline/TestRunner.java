@@ -6,6 +6,6 @@ import cucumber.api.CucumberOptions;
 
 
 @RunWith(Cucumber.class) 
-@CucumberOptions(format = {"pretty", "html:target/cucumber"},features = "classpath:features/",glue={"stepDefinition"}) 
+@CucumberOptions(format = {"pretty", "html:target/cucumber"},features = "src/test/resources/features/",glue={"stepDefinition"}) 
 
 public class TestRunner { }
