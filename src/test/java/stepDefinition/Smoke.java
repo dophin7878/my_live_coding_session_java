@@ -24,33 +24,32 @@ public class Smoke {
 
    private String addURI;
    private ResponseEntity response;
-   private String responseGetUser;
-   private ResponseEntity<String> responseCreateUser;
+   private ResponseEntity<String> responseCreateEmployee;
    
    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
    private Date dateOfBirth=null;
+private String responseGetEmployee;
    
    
 
    
    /**
-    * get users
+    * get employees
     */
-   @Given("^I Set GET employees service api endpoint$")
-   public void setGetUsersEndpoint(){
-       addURI = "http://localhost:8080/employees/";
+   @Given("^I Set GETemployees endpoint$")
+   public void setGetEmployeesEndpoint(){
+       addURI = "http://localhost:8080/employees";
  
    }   
    
-   @When("^you want to retrieve a list of users$")
-   public void listUsers() throws Throwable {
-      //llamada get
+   @When("^I want to retrieve a list of employees$")
+   public void listEmployees() throws Throwable {
 	   RestTemplate restTemplate = new RestTemplate ();
-	   response = restTemplate.getForEntity("http://localhost:8080/employees/", String.class, String.class);
+	   response = restTemplate.getForEntity("http://localhost:8080/employees", String.class, String.class);
    }
    
-   @Then("^the server should handle it and return a list of users$")
-   public void verifyGetUsers() throws Throwable {
+   @Then("^the server should handle it and return a list of employees$")
+   public void verifyGetEmployees() throws Throwable {
 	   int statusCode = response.getStatusCodeValue();
 	   
 	    Assert.assertEquals(statusCode,200);
@@ -58,39 +57,35 @@ public class Smoke {
    }
 
    /**
-    * get user.
+    * get employee.
     */
-   @Given("^I Set GET employee service api endpoint$")
-   public void setGetUserEndpoint(){
+   @Given("^I Set GETemployee endpoint$")
+   public void setGetEmployeeEndpoint(){
        addURI = "http://localhost:8080/employee";
  
    }
    
-   @When("^you want to retrieve a defined '(.+)' user$")
-   public void getUser(String arg1) throws Throwable {
+   @When("^I want to retrieve a defined '(.+)' employee$")
+   public void getEmployee(String arg1) throws Throwable {
 	  
 	   Map<String, String> vars = new HashMap<>();
 	   vars.put("id", arg1);
 	   RestTemplate restTemplate = new RestTemplate ();
 
-	   responseGetUser = restTemplate.getForObject("http://localhost:8080/employee/{id}", 
+	   responseGetEmployee = restTemplate.getForObject("http://localhost:8080/employee/{id}", 
 	       String.class, vars);
-//	   System.out.println(responseGetUser);
+
    }
 
-   @Then("^the server should handle it and return a user$")
-   public void verifyGetUser() throws Throwable {
-	   Assert.assertNotNull(responseGetUser);
+   @Then("^the server should handle it and return an employee$")
+   public void verifyGetEmployee() throws Throwable {
+	   Assert.assertNotNull(responseGetEmployee);
    }
    
    
-   @Given("^I Set POST employee service api endpoint$")
-   public void setCreateUserEndpoint(){
-       addURI = "http://localhost:8080/employee";
-   }
-   
-   @When("^you want to create an user$")
-   public void createUser() throws Throwable {
+  
+   @When("^I want to create an employee$")
+   public void createEmployee() throws Throwable {
 	 HttpHeaders headers = new HttpHeaders();
 	 String nameEmployee = "Test2";
      int idEmployee = 1110;
@@ -101,16 +96,12 @@ public class Smoke {
     
      HttpEntity<String> request = new HttpEntity<String>(jsonBody, headers);
      RestTemplate restTemplate = new RestTemplate ();
-     responseCreateUser =     
-     restTemplate.exchange("http://localhost:8080/employee", HttpMethod.POST, request, String.class);
+     responseCreateEmployee =     
+     restTemplate.exchange("http://localhost:8080/employee/", HttpMethod.POST, request, String.class);
     
    }
    
-   @Then("^the user is created in the database$")
-   public void assertCreateUser() throws Throwable {
-	   Assert.assertNotNull(responseCreateUser);
-   }
-   
+ 
    
  
    
